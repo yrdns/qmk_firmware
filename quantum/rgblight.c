@@ -28,6 +28,9 @@
 #include "progmem.h"
 #include "timer.h"
 #include "rgblight.h"
+#ifdef RGBLIGHT_REACTIVE_ENABLE
+#include "rgblight_reactive.h"
+#endif
 #include "color.h"
 #include "debug.h"
 #include "led_tables.h"
@@ -311,6 +314,11 @@ void rgblight_mode_eeprom_helper(uint8_t mode, bool write_to_eeprom) {
   } else {
     dprintf("rgblight mode [NOEEPROM]: %u\n", rgblight_config.mode);
   }
+#ifdef RGBLIGHT_REACTIVE_ENABLE
+  if (rgblight_config.mode == RGBLIGHT_MODE_REACTIVE) {
+    rgblight_reactive_reset();
+  }
+#endif
   if( is_static_effect(rgblight_config.mode) ) {
 #ifdef RGBLIGHT_USE_TIMER
       rgblight_timer_disable();
@@ -850,6 +858,12 @@ void rgblight_task(void) {
     else if (rgblight_status.base_mode == RGBLIGHT_MODE_ALTERNATING){
       interval_time = 500;
       effect_func = (effect_func_t)rgblight_effect_alternating;
+    }
+#endif
+#ifdef RGBLIGHT_REACTIVE_ENABLE
+    else if (rgblight_status.base_mode == RGBLIGHT_MODE_REACTIVE) {
+        interval_time = RGBLIGHT_REACTIVE_INTERVAL;
+        effect_func = (effect_func_t)rgblight_reactive_update;
     }
 #endif
     if (animation_status.restart) {

@@ -74,6 +74,11 @@ ifeq ($(strip $(FAUXCLICKY_ENABLE)), yes)
     SRC += $(QUANTUM_DIR)/fauxclicky.c
 endif
 
+ifeq ($(strip $(RGBLIGHT_REACTIVE_ENABLE)), yes)
+    OPT_DEFS += -DRGBLIGHT_REACTIVE_ENABLE
+    SRC += $(QUANTUM_DIR)/rgblight_reactive.c
+endif
+
 ifeq ($(strip $(POINTING_DEVICE_ENABLE)), yes)
     OPT_DEFS += -DPOINTING_DEVICE_ENABLE
     OPT_DEFS += -DMOUSE_ENABLE

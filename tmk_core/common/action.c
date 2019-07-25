@@ -44,6 +44,10 @@ int retro_tapping_counter = 0;
 #include <fauxclicky.h>
 #endif
 
+#ifdef RGBLIGHT_REACTIVE_ENABLE
+#include <rgblight_reactive.h>
+#endif
+
 #ifndef TAP_CODE_DELAY
 #  define TAP_CODE_DELAY 0
 #endif
@@ -97,6 +101,11 @@ void action_exec(keyevent_t event)
     process_record(&record);
     if (!IS_NOEVENT(record.event)) {
         dprint("processed: "); debug_record(record); dprintln();
+    }
+#endif
+#ifdef RGBLIGHT_REACTIVE_ENABLE
+    if (IS_PRESSED(event)) {
+        rgblight_reactive_recordpress(&event);
     }
 #endif
 }
