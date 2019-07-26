@@ -57,9 +57,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef FAUXCLICKY_ENABLE
 #   include "fauxclicky.h"
 #endif
-#ifdef RGBLIGHT_REACTIVE_ENABLE
-#   include "rgblight_reactive.h"
-#endif
 #ifdef SERIAL_LINK_ENABLE
 #   include "serial_link/system/serial_link.h"
 #endif

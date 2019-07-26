@@ -28,12 +28,12 @@
 #ifndef RGBLIGHT_REACTIVE_DIFFUSE_ON
   #define REACTIVE_DECAY 0x20
 #else
-  #define REACTIVE_DECAY 0x03
+  #define REACTIVE_DECAY 0x14
 #endif
 #endif
 
 #ifndef REACTIVE_DIFFUSE
-#define REACTIVE_DIFFUSE 0x10
+#define REACTIVE_DIFFUSE 0x08
 #endif
 
 #ifndef REACTIVE_WAVE_STRENGTH
@@ -45,20 +45,28 @@
 #endif
 
 #ifndef REACTIVE_INITIAL_MAG
+#define REACTIVE_INITIAL_MAG 0x60
+#endif
+
+#ifndef REACTIVE_HELD_MAG
+#define REACTIVE_HELD_MAG 0x40
+#endif
+
+#ifndef REACTIVE_VAL_SCALE
 #ifndef RGBLIGHT_REACTIVE_DIFFUSE_ON
-  #define REACTIVE_INITIAL_MAG 2
+  #define REACTIVE_VAL_SCALE 2
 #else
-  #define REACTIVE_INITIAL_MAG 4
+  #define REACTIVE_VAL_SCALE 4
 #endif
 #endif
 
 #ifndef REACTIVE_EDGE_BLEED
-  #if defined(RGBLIGHT_REACTIVE_DIFFUSE_ON) || \
-      defined(RGBLIGHT_REACTIVE_WAVE_ON)
-    #define REACTIVE_EDGE_BLEED 2
-  #else
-    #define REACTIVE_EDGE_BLEED 0
-  #endif
+#if defined(RGBLIGHT_REACTIVE_DIFFUSE_ON) || \
+    defined(RGBLIGHT_REACTIVE_WAVE_ON)
+  #define REACTIVE_EDGE_BLEED 2
+#else
+  #define REACTIVE_EDGE_BLEED 0
+#endif
 #endif
 
 #define REACTIVE_ROWS (MATRIX_ROWS + 2*REACTIVE_EDGE_BLEED)
@@ -74,4 +82,3 @@ void rgblight_reactive_updatelights(void);
 void set_rgb_mag(uint8_t row, uint8_t col, uint8_t mag);
 
 #endif // RGBLIGHT_REACTIVE_H
-
