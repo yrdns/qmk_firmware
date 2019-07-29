@@ -1,0 +1,5 @@
+SRC = reactive_diffusion_anim.c
+
+RGBLIGHT_ENABLE = no
+RGB_MATRIX_ENABLE = WS2812
+RGB_MATRIX_CUSTOM_USER = yes
