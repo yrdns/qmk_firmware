@@ -25,10 +25,12 @@
 static bool eval_dir = 0;
 
 void reactive_diffusion_recordkeypress(keyrecord_t *record) {
-    uint8_t row = record->event.key.row;
-    uint8_t col = record->event.key.col;
+    if (REACTIVE_DIFFUSION_INITIAL_MAG &&
+          record->event.pressed &&
+          rgb_matrix_get_mode() == RGB_MATRIX_CUSTOM_REACTIVE_DIFFUSION) {
+        uint8_t row = record->event.key.row;
+        uint8_t col = record->event.key.col;
 
-    if (REACTIVE_DIFFUSION_INITIAL_MAG) {
         rgb_frame_buffer[row][col] = qadd8(rgb_frame_buffer[row][col],
                                            REACTIVE_DIFFUSION_INITIAL_MAG);
 
