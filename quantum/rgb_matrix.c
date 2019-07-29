@@ -544,6 +544,10 @@ void rgb_matrix_mode_noeeprom(uint8_t mode) {
 }
 
 uint8_t rgb_matrix_get_mode(void) {
+  if (!rgb_matrix_config.enable) {
+    return 0;
+  }
+
   return rgb_matrix_config.mode;
 }
 
