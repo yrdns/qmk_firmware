@@ -22,27 +22,26 @@
 #endif
 
 #ifndef REACTIVE_DIFFUSION_DECAY
-#define REACTIVE_DIFFUSION_DECAY 0x14
+#define REACTIVE_DIFFUSION_DECAY 0x06
 #endif
 
 #ifndef REACTIVE_DIFFUSION_STRENGTH
-#define REACTIVE_DIFFUSION_STRENGTH 0x08
+#define REACTIVE_DIFFUSION_STRENGTH 0x04
 #endif
 
 #ifndef REACTIVE_DIFFUSION_INITIAL_MAG
-#define REACTIVE_DIFFUSION_INITIAL_MAG 0x20
+#define REACTIVE_DIFFUSION_INITIAL_MAG 0x00
 #endif
 
 #ifndef REACTIVE_DIFFUSION_HELD_MAG
-#define REACTIVE_DIFFUSION_HELD_MAG 0x40
+#define REACTIVE_DIFFUSION_HELD_MAG 0x20
 #endif
 
 #ifndef REACTIVE_DIFFUSION_VAL_SCALE
 #define REACTIVE_DIFFUSION_VAL_SCALE 4
 #endif
 
-void reactive_diffusion_scan(void);
-void reactive_diffusion_update(void);
+bool reactive_diffusion_update(uint8_t iter_min, uint8_t iter_max);
 void reactive_diffusion_recordkeypress(keyrecord_t *record);
 
 void reactive_diffusion_reset(void);
